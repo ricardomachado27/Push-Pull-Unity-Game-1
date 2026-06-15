@@ -12,39 +12,29 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if(pauseMenu.activeSelf)
+    
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Time.timeScale = 0f;
-                pauseMenu.SetActive(true);
-                Cursor.visible = true;
-
+                if (pauseMenu.activeSelf)
+                {
+                    // Menu is open — resume the game
+                    Time.timeScale = 1f;
+                    pauseMenu.SetActive(false);
+                    Cursor.visible = false;
+                }
+                else
+                {
+                    // Menu is closed — pause the game
+                    Time.timeScale = 0f;
+                    pauseMenu.SetActive(true);
+                    Cursor.visible = true;
+                }
             }
-             
         }
-            else
-            {
-
-                Time.timeScale = 1f;
-                pauseMenu.SetActive(false);
-            Cursor.visible= false;
-
-            
-            }
-                
-            
-
-        
-     
-
-
-    }
 
     public void quit()
-
     {
-       Application.Quit(); 
+        Application.Quit();
     }
 
     public void resume()
@@ -52,6 +42,5 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         pauseMenu.SetActive(false);
         Cursor.visible = false;
-
     }
 }
